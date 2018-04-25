@@ -1,3 +1,5 @@
+module.exports = Phrase;
+
 // Adds `reverse` to all strings
 String.prototype.reverse = function() {
   return Array.from(this).reverse().join("");
@@ -21,16 +23,3 @@ function Phrase(content) {
     return this.processedContent() === this.processedContent().reverse();
   };
 }
-
-// Defines a translated Phrase object.
-function TranslatedPhrase(content, translation) {
-  this.content = content;
-  this.translation = translation;
-
-  // Returns translation processed for palindrome testing.
-  this.processedContent = function processedContent() {
-    return this.processor(this.translation);
-  }
-}
-
-TranslatedPhrase.prototype = new Phrase();
