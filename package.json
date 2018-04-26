@@ -1,6 +1,6 @@
 {
   "name": "tcuipan-palindrome",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Palindrome detector",
   "main": "index.js",
   "scripts": {
@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/tianyuancuipan/tcuipan-palindrome/issues"
   },
-  "homepage": "https://github.com/tianyuancuipan/tcuipan-palindrome#readme"
+  "homepage": "https://github.com/tianyuancuipan/tcuipan-palindrome#readme",
+  "dependencies": {
+    "npm": "^6.0.0"
+  }
 }

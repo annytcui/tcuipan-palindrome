@@ -9,6 +9,14 @@ String.prototype.reverse = function() {
 function Phrase(content) {
   this.content = content;
 
+  // Returns the letters in the content.
+  // For example:
+  //   new Phrase("Hello, world!").letters() === "Helloworld"
+  this.letters = function letters() {
+    const letterRegEx = /[a-z]/i;
+    return Array.from(this.content).filter(c => c.match(letterRegEx)).join("");
+  }
+
   this.processor = function(string) {
     return string.toLowerCase();
   }
@@ -18,16 +26,12 @@ function Phrase(content) {
     return this.processor(this.letters());
   }
 
-  // Returns the letters in the content.
-  // For example:
-  //   new Phrase("Hello, world!").letters() === "Helloworld"
-  this.letters = function letters() {
-    const letterRegEx = /[a-z]/i;
-    return Array.from(this.content).filter(c => c.match(letterRegEx)).join("");
-  }
-
   // Returns true if the phrase is a palindrome, false otherwise.
   this.palindrome = function palindrome() {
-    return this.processedContent() === this.processedContent().reverse();
-  };
+    if (this.letters()) {
+      return this.processedContent() === this.processedContent().reverse();
+    } else {
+      return false;
+    }
+  }
 }
