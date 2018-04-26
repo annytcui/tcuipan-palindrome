@@ -4,9 +4,9 @@ let fs = require("fs");
 let Phrase = require("./index.js");
 
 let text = fs.readFileSync("phrases.txt", "utf-8");
-text.split("\n").forEach(function(line) {
+filteredText = text.split("\n").filter(line => {
   let phrase = new Phrase(line);
-  if (phrase.palindrome()) {
-    console.log("palindrome detected:", line);
-  }
-});
+  return (phrase.palindrome());
+}).join("\n");
+fs.writeFileSync("palindromes.txt", filteredText)
+console.log("Saved!");
