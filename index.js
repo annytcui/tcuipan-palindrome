@@ -22,13 +22,7 @@ function Phrase(content) {
   // For example:
   //   new Phrase("Hello, world!").letters() === "Helloworld"
   this.letters = function letters() {
-    let theLetters = [];
-    for (let i = 0; i < this.content.length; i++) {
-      if (this.content.charAt(i).match(/[a-zA-Z]/)) {
-        theLetters.push(this.content.charAt(i));
-      }
-    }
-    return theLetters.join("");
+    return Array.from(this.content).filter(c => c.match(/[a-z]/i)).join("");
   }
 
   // Returns true if the phrase is a palindrome, false otherwise.
