@@ -1,0 +1,36 @@
+#!/usr/local/bin/node
+
+// Returns the paragraphs from a Wikipedia link, stripped of reference numbers.
+// Especially useful for text-to-speech (both native and foreign).
+
+let request = require("request");
+
+// Detect the presence of a command-line argument.
+if (process.argv.length === 2) {
+  console.log("wikp {url}");
+  process.exit();
+} else {
+  let url = process.argv[2];
+
+  const jsdom = require("jsdom");
+  const { JSDOM } = jsdom;
+
+  request(url, function(error, response, body) {
+    // simulate a Document Object Model.
+    let { document } = (new JSDOM(body)).window;
+
+    // Grab all the paragraphs and references.
+    let paragraphs = document.querySelectorAll("p");
+    let references = document.querySelectorAll(".reference");
+
+    // Remove any references.
+    references.forEach(function(reference) {
+      reference.remove();
+    });
+
+    // Print out all the paragraphs.
+    paragraphs.forEach(function(paragraph) {
+      console.log(paragraph.textContent + "\n");
+    });
+  });
+};
